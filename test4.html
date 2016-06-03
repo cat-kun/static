@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<title>滚动到某个距离显示</title>
+<meta name="renderer" content="webkit">
+<style>
+	.box,.box2{
+		width: 1000px;
+		margin: 1500px auto 0;
+		overflow: hidden;
+	}
+	.box .left,.box .right,.box2 .left,.box2 .right{
+		width: 300px;
+		height: 300px;
+		line-height: 300px;
+		background-color: #BB2B2B;
+		text-align: center;
+	}
+	.box .left,.box2 .left{
+		float: left;
+		transition: all .5s;
+		opacity: 0;
+	}
+	.box .right,.box2 .right{
+		float: right;
+		transition: all .5s;
+		opacity: 0;
+	}
+	.box .left.ml,.box2 .left.ml{
+		margin-left: 50px;
+		opacity: 1;
+	}
+	.box .right.mr,.box2 .right.mr{
+		margin-right: 50px;
+		opacity: 1;
+	}
+</style>
+</head>
+<body>
+<div class="box">
+	<div class="left">左边内容1</div>
+	<div class="right">右边内容1</div>
+</div>
+<div class="box2">
+	<div class="left">左边内容2</div>
+	<div class="right">右边内容2</div>
+</div>
+<script src="http://apps.bdimg.com/libs/jquery/1.10.0/jquery.min.js"></script>
+<script>
+	$(window).on('scroll',function (){
+		show();
+	});
+	show();
+
+	function show(){
+
+	var clientH = $(window).height();
+	var $boxLeftTop = $('.box .left').offset().top;
+	var $boxLeftTop2 = $('.box2 .left').offset().top;
+	var scrollTop = $(window).scrollTop();
+	//console.log($boxLeftTop);
+
+		if( $boxLeftTop >= scrollTop && $boxLeftTop < scrollTop + clientH ){
+			console.log('进入到可视区');
+			$('.box .left').addClass('ml');
+			$('.box .right').addClass('mr');
+		}else{
+			console.log('可视区外');
+			$('.box .left').removeClass('ml');
+			$('.box .right').removeClass('mr');
+		}
+
+		if( $boxLeftTop2 >= scrollTop && $boxLeftTop2 < scrollTop + clientH ){
+			console.log('进入到可视区');
+			$('.box2 .left').addClass('ml');
+			$('.box2 .right').addClass('mr');
+		}else{
+			console.log('可视区外');
+			$('.box2 .left').removeClass('ml');
+			$('.box2 .right').removeClass('mr');
+		}
+
+	}
+</script>
+</body>
+</html>
