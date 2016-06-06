@@ -10,26 +10,31 @@
 		margin: 0;
 		padding: 0;
 	}
-	#img img{
+	img{
+		vertical-align: middle;
+	}
+	#img div{
 		min-height: 100px;
 		min-width: 300px;
-		display: block;
 		margin: 400px auto;
+		border: 1px solid #000;
+		text-align: center;
+		line-height: 100px;
 	}
 </style>
 </head>
 <body>
 <div id="img">
-	<img class="lazy" src="img-bg.jpg" data-src="img/1.jpg" alt="">
-	<img class="lazy" src="img-bg.jpg" data-src="img/2.jpg" alt="">
-	<img class="lazy" src="img-bg.jpg" data-src="img/3.jpg" alt="">
-	<img class="lazy" src="img-bg.jpg" data-src="img/4.jpg" alt="">
-	<img class="lazy" src="img-bg.jpg" data-src="img/5.jpg" alt="">
+	<div><img class="lazy" src="img/loading.gif" data-src="img/1.jpg" alt=""></div>
+	<div><img class="lazy" src="img/loading.gif" data-src="img/2.jpg" alt=""></div>
+	<div><img class="lazy" src="img/loading.gif" data-src="img/3.jpg" alt=""></div>
+	<div><img class="lazy" src="img/loading.gif" data-src="img/4.jpg" alt=""></div>
+	<div><img class="lazy" src="img/loading.gif" data-src="img/5.jpg" alt=""></div>
 </div>
 <script src="http://apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js"></script>
 <script>
 	lazyImg('.lazy');
-	
+
 	$(window).on('scroll',function (){
 		lazyImg('.lazy');
 	});
@@ -40,7 +45,7 @@
 				var imgUrl = $(this).attr('data-src');
 				$(this).attr('src',imgUrl);
 			}
-		});		
+		});
 	}
 	
 </script>
