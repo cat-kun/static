@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<title>事件委托</title>
+<meta name="renderer" content="webkit">
+<style>
+	*{
+		margin: 0;
+		padding: 0;
+	}
+	body{
+		height: 2000px;
+	}
+	li{
+		width: 200px;
+		height: 20px;
+		margin: 10px auto;
+	}
+	#btn{
+		width: 100px;
+		height: 50px;
+	}
+</style>
+</head>
+<body>
+<input id="btn" type="button" value="添加li">
+<input id="input" type="text" value="哈哈">
+<ul>
+	<li>01啦啦啦啦</li>
+	<li>02啦啦啦啦</li>
+	<li>03啦啦啦啦</li>
+	<li>04啦啦啦啦</li>
+</ul>
+<script src="jquery.min.js"></script>
+<script>
+	/*$('li').on('click',function (){
+		$(this).css('color','red');
+	});*/
+
+	$('ul').delegate('li','click',function (ev){
+		$(this).css('color','red');
+
+		// $(ev.delegateTarget).css('background','#ccc');			//给ul设置背景色
+		// $(ev.delegateTarget).undelegate();						//取消委托
+	});
+
+	$('#btn').on('click',function (){
+		var $li = $('<li>'+ $('#input').val() +'</li>');
+		$('ul').append($li);
+	});
+
+	$('#input').on('keydown',function (ev){
+		if( ev.which == 13 ){
+
+			// 这样做是可以的，但是太傻了（可以用trigger 模拟触发 btn的点击事件）
+			/*var $li = $('<li>'+ $('#input').val() +'</li>');
+			$('ul').append($li);*/
+
+			// 主动触发
+			$('#btn').trigger('click');
+			// 或者
+			// $('#btn').click();
+		}
+	});
+</script>
+</body>
+</html>

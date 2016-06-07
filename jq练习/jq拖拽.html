@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<title>jq拖拽</title>
+<meta name="renderer" content="webkit">
+<style>
+	*{
+		margin: 0;
+		padding: 0;
+	}
+	body{
+		height: 2000px;
+	}
+	#div1{
+		width: 100px;
+		height: 100px;
+		background-color: #333;
+		position: absolute;
+		left: 100px;
+		top: 100px;
+	}
+</style>
+</head>
+<body>
+<div id="div1">div1</div>
+<script src="jquery.min.js"></script>
+<script>
+	var disX = 0,
+		disY = 0;
+
+	var $div1 = $('#div1');
+
+	$div1.on('mousedown',function (ev){
+		disX = ev.pageX - $(this).offset().left;
+		disY = ev.pageY - $(this).offset().top;
+		console.log( ev.pageX,ev.pageY );
+
+		$(document).on('mousemove',function (ev){
+			$div1.css('left',ev.pageX - disX);
+			$div1.css('top',ev.pageY - disY);
+		});
+
+		$(document).on('mouseup',function (){
+			$(this).off();
+		});
+		ev.preventDefault();
+	});
+</script>
+</body>
+</html>

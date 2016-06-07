@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<title>事件委托</title>
+<meta name="renderer" content="webkit">
+<style>
+	*{
+		margin: 0;
+		padding: 0;
+	}
+	body{
+		height: 2000px;
+	}
+	#div1{
+		height: 100px;
+	}
+</style>
+</head>
+<body>
+<div id="div1"></div>
+<script src="jquery.min.js"></script>
+<script>
+$('#div1').on('click.a',function (){
+	alert(1);
+});
+
+$('#div1').on('click.b',function (){
+	alert(2);
+});
+
+$('#div1').trigger('click.a');			//trigger 事件不可省略  即 trigger('.a') 是无效的,不同于 off('.aa')
+</script>
+</body>
+</html>
