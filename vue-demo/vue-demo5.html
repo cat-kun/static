@@ -5,7 +5,7 @@
 <!-- 避免IE使用兼容模式 -->
 <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
 <meta name="renderer" content="webkit">
-<title>vue-demo3</title>
+<title>vue-demo5</title>
 <meta name="viewport" content="width=device-width,user-scalable=no,initial-scale=1.0,maximum-scale=1.0,minimum-scale=1.0">
 <!-- 是否启动webapp功能，会删除默认的苹果工具栏和菜单栏 -->
 <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -26,9 +26,11 @@
 </head>
 <body>
 <div id="app">
+	<input v-model="newTodo" v-on:keyup.enter="addTodo">
 	<ul>
-		<li v-for="fuck in todos">
-			{{ fuck.text }}
+		<li v-for="todo in todos">
+			<span>{{ todo.text }}</span>
+			<button v-on:click="revemoTodo($index)">X</button>
 		</li>
 	</ul>
 </div>
@@ -36,12 +38,22 @@
 	new Vue({
 		el: '#app',
 		data: {
+			newTodo: '',
 			todos: [
-				{text: '拉拉1'},
-				{text: '拉拉2'},
-				{text: '拉拉3'},
-				{text: '拉拉4'},
+				{text: '草泥马'}
 			]
+		},
+		methods: {
+			addTodo: function (){
+				var text = this.newTodo.trim()
+				if( text ){
+					this.todos.push({ text: text })
+					this.newTodo = ''
+				}
+			},
+			revemoTodo: function (index){
+				this.todos.splice(index,1)
+			}
 		}
 	});
 </script>
