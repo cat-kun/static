@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style>
+		*{
+			margin: 0;padding: 0;
+		}
+		li{
+			list-style: none;
+		}
+		img{
+			vertical-align: middle;
+		}
+		a{
+			text-decoration: none;
+		}
+		.clearfix:after{
+			content: "";
+			display: block;
+			height: 0;
+			clear: both;
+		}
+		.clearfix{
+			*zoom: 1;
+		}
+		.wrap{
+			width: 520px;
+			/*width: 2600px;*/
+			height: 280px;
+			overflow: hidden;
+			position: relative;
+			margin: 50px auto 0;
+		}
+		.wrap ul{
+			width: 2600px;
+			position: absolute;
+			top: 0;
+			left: 0;
+		}
+		.wrap ul li{
+			float: left;
+		}
+		.wrap ol{
+			width: 135px;
+			position: absolute;
+			bottom: 10px;
+			right: 10px;
+			margin-right: -5px;
+			/*overflow: hidden;*/
+		}
+		.wrap ol li{
+			width: 20px;
+			height: 20px;
+			background-color: #fff;
+			color: #f60;
+			border: 1px solid #f60;
+			float: left;
+			margin-right: 5px;
+			text-align: center;
+			line-height: 20px;
+		}
+		.wrap ol li a{
+			color: #f60;
+		}
+		.wrap ol li.active{
+			background-color: #f60;
+			
+		}
+		.wrap ol li.active a{
+			color: #fff;
+		}
+		.prev-btn,.next-btn{
+			width: 24px;
+			height: 36px;
+			position: absolute;
+			top: 50%;
+			margin-top: -18px;
+			display: none;
+		}
+		.next-btn{
+			right: 0;
+		}
+	</style>
+</head>
+<body>
+	<div class="wrap">
+		<ul>
+			<li><img src="https://img.alicdn.com/tps/TB1E68wKpXXXXb.aXXXXXXXXXXX-520-280.jpg" alt=""></li>
+			<li><img src="https://aecpm.alicdn.com/simba/img/TB1WrpRKpXXXXa6XXXXSutbFXXX.jpg" alt=""></li>
+			<li><img src="https://aecpm.alicdn.com/simba/img/TB16iAZJFXXXXb3XpXXSutbFXXX.jpg" alt=""></li>
+			<li><img src="https://img.alicdn.com/tps/TB1wxxCKpXXXXcUXFXXXXXXXXXX-520-280.jpg" alt=""></li>
+			<li><img src="https://aecpm.alicdn.com/simba/img/TB1fLzgKXXXXXbCXXXXSutbFXXX.jpg" alt=""></li>
+		</ul>
+		<ol class="clearfix">
+			<li class="active"><a href="javascript:">1</a></li>
+			<li><a href="javascript:">2</a></li>
+			<li><a href="javascript:">3</a></li>
+			<li><a href="javascript:">4</a></li>
+			<li><a href="javascript:">5</a></li>
+		</ol>
+		<a href="javascript:" class="prev-btn"><img src="img/prev-btn.jpg" alt=""></a>
+		<a href="javascript:" class="next-btn"><img src="img/next-btn.jpg" alt=""></a>
+	</div>
+</body>
+<script src="jquery.min.js"></script>
+<script>
+	var $oLi = $('.wrap ol li');
+	var $oUl = $('.wrap ul');
+	var $liW = $('.wrap ul li').width();
+	var iNow = 0;
+	var timer = null;
+
+	$oLi.on('mouseover',function (){
+		iNow = $(this).index();
+		$(this).addClass('active').siblings().removeClass('active');
+		$oUl.stop().animate({
+			'left': -$liW * iNow
+		},300);
+	});
+
+	$('.wrap').mouseover(function (){
+		clearInterval(timer);
+		$('.prev-btn,.next-btn').show();
+	}).mouseout(function (){
+		timer = setInterval(toRun,3000);
+		$('.prev-btn,.next-btn').hide();
+	});
+
+	timer = setInterval(toRun,3000);
+
+	$('.prev-btn').on('click',function (){
+		if( iNow == 0 ){
+			iNow = $oLi.length-1
+		}else{
+			iNow --;	
+		}
+		console.log(iNow);
+		$oLi.eq(iNow).addClass('active').siblings().removeClass('active');
+		$oUl.stop().animate({
+			'left': -$liW * iNow
+		},300);
+	});
+	$('.next-btn').on('click',toRun);
+
+	function toRun(){
+		if( iNow == $oLi.length-1 ){
+			iNow = 0;
+		}else{
+			iNow ++;
+		}
+		$oLi.eq(iNow).addClass('active').siblings().removeClass('active');
+		$oUl.stop().animate({
+			'left': -$liW * iNow
+		},300);
+	}
+</script>
+</html>
