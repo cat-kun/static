@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<title>jq一些工具方法</title>
+<meta name="renderer" content="webkit">
+<style>
+
+</style>
+</head>
+<body>
+<div id="div1"></div>
+<script src="jquery.min.js"></script>
+<script>
+// $().css   $().html        $().click()			//都是针对JQ对象
+// $.xxx()   $.yyy()								//工具方法：既可以给jq对象用，也可以给原生JS用
+// 
+// $.type();										//查看变量的类型
+var a = [];
+console.log( typeof a, $.type(a) );					//原生typeof 不够强大，太复杂的打印出来 都是 object， 这种写法 可以看成jq的命名空间，只不过是加了一个前缀（$）
+</script>
+</body>
+</html>

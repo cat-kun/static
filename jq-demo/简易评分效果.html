@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<title>简易评分效果</title>
+<meta name="renderer" content="webkit">
+<style>
+	*{
+		margin: 0;padding: 0;
+	}
+	.box{
+		margin: 100px 50px;
+	}
+.box li{
+	width: 30px;height: 30px;border-radius: 50%;
+	background-color: #f60;
+	float: left;
+	margin-right: 10px;
+	list-style: none;
+}
+.box li.red,.box li.current{
+	background: #000;
+}
+</style>
+</head>
+<body>
+
+<div class="box">
+	<ul>
+		<li></li>
+		<li></li>
+		<li></li>
+		<li></li>
+		<li></li>
+	</ul>
+</div>
+<script src="http://apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js"></script>
+<script>
+var timer = null;
+$('.box li').hover(
+	function (){
+		clearTimeout(timer);
+		$('.box li:lt(' + ($(this).index()+1) + ')').addClass('red');
+	},
+	function (){
+		timer = setTimeout(function (){
+			$('.box li').removeClass('red');
+		},100)
+		
+	}
+).on('click',function (){
+	console.log( $(this).index() );
+	$('.box li:gt(' + ($(this).index()) + ')').removeClass('current');
+	$('.box li:lt(' + ($(this).index()+1) + ')').addClass('current');
+});
+</script>
+</body>
+</html>

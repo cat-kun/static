@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<title>jq插件 图片弹出层demo</title>
+<meta name="renderer" content="webkit">
+<style>
+	li{
+		height: 40px;
+		line-height: 40px;
+		position: relative;
+	}
+	img{
+		vertical-align: middle;
+		max-width: 100%;
+	}
+	.imgLayer {
+	margin: 0;
+	padding: 0;
+	width: 300px;
+	height: 200px;
+	padding: 10px;
+	border: 1px solid #e4e4e4;
+	text-align: center;
+	position: absolute;
+	top: -50%;
+	left: 50%;
+	z-index: 1;
+	margin-top: -70px;
+	margin-left: -150px;
+	background-color: #fff;
+	box-shadow: 0 0 20px 0 #ccc;
+	border-radius: 2px
+}
+
+.imgLayer:after,.imgLayer:before {
+	content: "";
+	border-style: dashed solid dashed dashed;
+	border-color: transparent #e4e4e4 transparent transparent;
+	border-width: 10px;
+	position: absolute;
+	left: -20px;
+	top: 50%;
+	margin-top: -10px
+}
+
+.imgLayer:after {
+	border-color: transparent #fff transparent transparent;
+	left: -18px
+}
+
+.imgLayer img {
+	height: 100%
+}
+</style>
+</head>
+<body>
+<ul>
+	<li>
+		<span>http://img5.duitang.com/uploads/item/201507/31/20150731164206_BXMvm.jpeg</span>
+	</li>
+	<li>
+		<span>http://imgsrc.baidu.com/forum/w%3D580/sign=9e74a8eb57fbb2fb342b581a7f4b2043/7ad0a9014c086e06da0f9ffd00087bf40bd1cbaf.jpg</span>
+	</li>
+	<li>
+		<span>http://img3.duitang.com/uploads/item/201511/03/20151103101553_yWFfe.thumb.700_0.jpeg</span>
+	</li>
+	<li>
+		<span>http://cdn.duitang.com/uploads/item/201410/16/20141016200317_PCBuN.thumb.700_0.jpeg</span>
+		<!-- <div class="imgLayer"><img src="http://img5.duitang.com/uploads/item/201507/31/20150731164206_BXMvm.jpeg" alt=""></div> -->
+	</li>
+</ul>
+<script src="http://apps.bdimg.com/libs/jquery/1.10.0/jquery.min.js"></script>
+<script>
+(function ($){
+	/*$.fn.imgLayer = function (){
+		var layer = $('<div class="imgLayer"><img src="" alt=""></div>');
+		// console.log( $('p', this).text() );
+		console.log($(this).find('p'));
+		$(this).append( layer );
+	}*/
+
+	/*$.fn.extend({
+		'imgLayer': function (options){
+			options = $.extend({
+				width: '300px',
+				height: '200px',
+			},opitons);
+
+		}
+	})*/
+
+	/*$.fn.extend({
+		'alterBgColor': function (options){
+			options = $.extend({
+				odd: 'odd',
+				even: 'even',
+				selected: 'selected'	
+			},options);	
+		}
+	});*/
+	var html = $('<div class="imgLayer"><img src="" alt=""></div>');
+	var imgUrl = '';
+	$('span').hover(
+		function (){
+			imgUrl = $(this).text();
+			$(this).append(html);
+			$('.imgLayer').find('img').attr('src',imgUrl);
+		},
+		function (){
+			$('.imgLayer').remove();
+		}
+	);
+})(jQuery);
+</script>
+</body>
+</html>

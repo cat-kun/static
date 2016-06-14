@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<title>上移 下移</title>
+<meta name="renderer" content="webkit">
+<style>
+	*{
+		margin: 0;padding: 0;
+	}
+	ul{
+		margin: 100px 30px;
+		font-size: 30px;
+	}
+	input[type=button]{
+		width: 100px;
+		height: 40px;
+	}
+	img{
+		vertical-align: middle;
+	}
+	/* img[src=""]{
+		border: none;
+	} */
+</style>
+</head>
+<body>
+<img src="http://img0.bdstatic.com/img/image/shouye/xiaoxiao/%E5%B0%8F%E6%B8%85%E6%96%B0527.jpg" alt="">
+<ul>
+	<li>
+		<span>1</span>
+		<input type="button" value="上移">
+		<input type="button" value="下移">
+	</li>
+	<li>
+		<span>2</span>
+		<input type="button" value="上移">
+		<input type="button" value="下移">
+	</li>
+	<li>
+		<span>3</span>
+		<input type="button" value="上移">
+		<input type="button" value="下移">
+	</li>
+	<li>
+		<span>4</span>
+		<input type="button" value="上移">
+		<input type="button" value="下移">
+	</li>
+	<li>
+		<span>5</span>
+		<input type="button" value="上移">
+		<input type="button" value="下移">
+	</li>
+</ul>
+<script src="http://apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js"></script>
+<script>
+	$('input[value="上移"]').on('click',function (){
+		var $nowLi = $(this).closest('li');
+		var $prevLi = $nowLi.prev();
+
+		/*if( $prevLi.length == 0 ){
+			return;
+		}else{
+			$nowLi.insertBefore($prevLi);
+		}*/
+		$prevLi.length == 0 ? console.log('到底了') : $nowLi.insertBefore($prevLi);
+
+	});
+	
+	$('input[value="下移"]').on('click',function (){
+		var $nowLi = $(this).closest('li');
+		var $nextLi = $nowLi.next();
+		if( $nextLi.length == 0 ){
+			return;
+		}else{
+			$nowLi.insertAfter($nextLi);	
+		}
+	});
+</script>
+</body>
+</html>

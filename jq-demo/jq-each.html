@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<title>jq each</title>
+<meta name="renderer" content="webkit">
+<style>
+	*{
+		margin: 0;padding: 0;
+	}
+	ul{
+		margin: 100px 30px;
+		font-size: 30px;
+	}
+</style>
+</head>
+<body>
+<ul>
+	<li></li>
+	<li></li>
+	<li></li>
+	<li></li>
+</ul>
+<script src="http://apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js"></script>
+<script>
+	/*for(){
+		aLi[i].style.background = 'red';
+	}*/
+
+	$('li').each(function (i,elem){
+		// i是个形参，索引值
+		// elem：原生的元素  =》 aLi[i]
+		// elem.style.background = 'red';
+		// $(elem).css('background','red');
+
+		// $(elem).htm(i);
+
+		//this == elem
+		//this.text(i);
+		// console.log(elem == this);
+		$(this).text(i);
+	});
+</script>
+</body>
+</html>

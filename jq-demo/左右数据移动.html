@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<title>左右数据移动</title>
+<meta name="renderer" content="webkit">
+<style>
+	*{
+		margin: 0;padding: 0;
+	}
+.box{
+	width: 300px;
+	float: left;
+	border: 1px solid #000;
+	text-align: center;
+	margin: 50px 0 50px 50px;
+}
+.box li{
+	line-height: 30px;
+}
+.red{
+	background: red;
+	color: #fff;
+}
+.button{
+	width: 100px;
+	height: 30px;
+	float: left;
+	margin: 50px 0;
+	font-size: 20px;
+}
+</style>
+</head>
+<body>
+<div class="box box1">
+	<ul>
+		<li>1哈哈哈哈</li>
+		<li>2哈哈哈哈</li>
+		<li>3哈哈哈哈</li>
+		<li>4哈哈哈哈</li>
+	</ul>
+</div>
+<input type="button" value="→" class="button button1">
+<input type="button" value="←" class="button button2">
+<input type="button" value="互换" class="button button3">
+<div class="box box2">
+	<ul>
+		<li>1呵呵呵呵</li>
+		<li>2呵呵呵呵</li>
+		<li>3呵呵呵呵</li>
+		<li>4呵呵呵呵</li>
+	</ul>
+</div>
+<script src="http://apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js"></script>
+<script>
+$('.box li').on('click',function (){
+	$(this).toggleClass('red');
+});
+$('.button1').on('click',function (){
+	$('.box1 .red').appendTo('.box2');
+	$('.box2').find('li').removeClass('red');
+});
+$('.button2').on('click',function (){
+	$('.box2 .red').appendTo('.box1');
+	$('.box1').find('li').removeClass('red');
+});
+$('.button3').on('click',function (){
+	/*if( $('.box1').find('.red') ){
+		$('.red').appendTo('.box2');
+	}else if($('.box2').find('.red')){
+		$('.red').appendTo('.box1');
+	}*/
+
+	$('.box1').find('.red').appendTo('.box2');
+	$('.box2').find('.red').appendTo('.box1');
+});
+</script>
+</body>
+</html>
