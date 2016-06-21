@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style>
+		*{
+			margin: 0;
+			padding: 0;
+		}
+		li{
+			list-style: none;
+		}
+		.tabs-mod {
+		    position: relative;
+		    padding: 10px 0;
+		}
+		.tabs-content {
+		    overflow: hidden;
+		}
+
+		.tabs-content li {
+		    float: left;
+		    margin-left: -1px;
+		    padding: 14px 16px 13px 0;
+		    cursor: pointer;
+		}
+		.tabs-content li a {
+		    border-left: 1px solid #ddd;
+		    font: 14px/1 "Microsoft YaHei";
+		    padding: 0 0 0 16px;
+		    height: 14px;
+		    display: block;
+		}
+		.tabs-content li.current a {
+		    color: #f52475;
+		}
+		a {
+		    color: #333;
+		    text-decoration: none;
+		    -webkit-transition: color .2s;
+		    -moz-transition: color .2s;
+		    -o-transition: color .2s;
+		    -ms-transition: color .2s;
+		    transition: color .2s;
+		}
+		.tabs-mod .wrap-line {
+		    position: relative;
+		    border-bottom: 1px solid #ddd;
+		    cursor: pointer;
+		}
+		.tabs-mod .wrap-line span {
+		    height: 0;
+		    border: 2px solid #f52475;
+		    bottom: 0;
+		    left: 0;
+		    width: 84px;
+		    position: absolute;
+		}
+	</style>
+</head>
+<body>
+<div class="tabs-mod">
+	<ul class="tabs-content clearfix">
+		<li class="current"><a href="javascript:;">热批精选</a></li>
+
+		<li class=""><a href="javascript:;">最近收藏</a></li>
+
+		<li class=""><a href="javascript:;">最近浏览过的</a></li>
+	</ul>
+	<div class="wrap-line"><span></span></div>
+</div>
+<script src="jquery.min.js"></script>
+<script>
+	var $li = $('.tabs-content li');
+	var $liW = $li.outerWidth(true);
+	var iNow = 0;
+
+	$('.tabs-content li').hover(
+		function (){
+			iNow = $(this).index();
+			var _width = $(this).outerWidth(true);
+
+			$(this).addClass('current').siblings().removeClass('current');
+			$('.wrap-line span').stop().animate({
+				left: $liW * iNow,
+				width: _width
+			},200);
+		}
+	);
+
+	setInterval(function (){
+
+		if(iNow == $li.length-1){
+			iNow = 0;
+		}else{
+			iNow++;
+		}
+
+
+		var _width = $li.eq(iNow).outerWidth(true);
+
+		//console.log(_width);
+		$li.eq(iNow).addClass('current').siblings().removeClass('current');
+		$('.wrap-line span').stop().animate({
+			left: $liW * iNow,
+			width: _width
+		},200);
+	},3000);
+</script>
+</body>
+</html>
