@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<title>Examples</title>
+<meta name="renderer" content="webkit">
+<style>
+	
+</style>
+</head>
+<body>
+<div class="div1">
+	div1111
+</div>
+<input type="text" class="inp">
+<script src="jquery.min.js"></script>
+<script>
+$('.div1').on('click',function (){
+	// console.log(1);
+	alert('div');
+	$(this).css('color','#ff0');
+	// $('.inp').trigger('blur');
+});
+$('.inp').on('blur',function (){
+	// console.log(2);
+	//setTimeout(function (){
+		//alert('input');
+	//},500);
+	
+	$(this).css('background','red');
+});
+</script>
+</body>
+</html>

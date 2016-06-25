@@ -46,14 +46,18 @@ $('.box li').hover(
 	function (){
 		timer = setTimeout(function (){
 			$('.box li').removeClass('red');
-		},100)
-		
+		},10)
+		//$('.box li').removeClass('red');
 	}
-).on('click',function (){
-	console.log( $(this).index() );
+).on('click',function (ev){
+	// console.log( $(this).index() );
 	$('.box li:gt(' + ($(this).index()) + ')').removeClass('current');
 	$('.box li:lt(' + ($(this).index()+1) + ')').addClass('current');
+
+	alert('选中了'+($(this).index()+1)+'个');
 });
+
+
 </script>
 </body>
 </html>

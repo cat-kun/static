@@ -116,25 +116,35 @@ var $olLi = $('.wrap ol li')
 var $ulLi = $('.wrap ul li');
 var $ulLiW = $ulLi.outerWidth();
 var iNow = 0;
+var timer = null;
 
 $ulLi.slice(1).each(function (){
 	$(this).css('left', $ulLiW);
 });
 
 $olLi.on('mouseover',function (){
-	$(this).addClass('active').siblings().removeClass('active');
 
-	var index = $(this).index();
+	clearTimeout(timer);
 
-	if( iNow < index ){
-		$ulLi.eq(iNow).stop().animate({left: -$ulLiW},500);
+	timer = setTimeout($.proxy(function (){
+		$(this).addClass('active').siblings().removeClass('active');
 
-	}else if(iNow > index){
-		$ulLi.eq(iNow).stop().animate({left: $ulLiW},500);
-	}
-	$ulLi.eq(index).stop().animate({left: 0},500);
+		var index = $(this).index();
 
-	iNow = index;
+		if( iNow < index ){
+			$ulLi.eq(index).css('left',$ulLiW);
+			$ulLi.eq(iNow).animate({left: -$ulLiW},500);
+
+		}else if(iNow > index){
+			$ulLi.eq(index).css('left',-$ulLiW);
+			$ulLi.eq(iNow).animate({left: $ulLiW},500);
+		}
+		$ulLi.eq(index).animate({left: 0},500);
+
+		iNow = index;	
+	},this),500);
+
+	
 });
 
 </script>

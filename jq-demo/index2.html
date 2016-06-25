@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<title>Examples</title>
+</head>
+<body>
+	<p><input type="checkbox" value="1">1</p>
+	<p><input type="checkbox" value="2">2</p>
+	<p><input type="checkbox" value="3">3</p>
+	<p><input type="checkbox" value="4">4</p>
+	<p><input type="checkbox" value="5">5</p>
+	<p><input type="checkbox" value="6">6</p>
+	<p><input type="checkbox" value="7">7</p>
+	<p><input type="checkbox" value="8">8</p>
+	<p><input type="checkbox" value="9">9</p>
+	<p><input type="checkbox" value="10">10</p>
+<script src="jquery.min.js"></script>
+<script type="text/javascript">
+$(function(){
+	var _url = '';
+	// var url = location.href;
+	var _title = document.title;
+	$('input[type=checkbox]').on('click',function(){
+		if( $(this).prop('checked') ){
+			_url='';
+			$('input:checked').each(function(i){
+				var _this = $(this);
+				_url += 'value'+i+'='+$(this).val()+'&'
+				// console.log(url+'?'+_url.slice(0,_url.length-1));
+				// location.hash = '?'+_url.slice(0,_url.length-1);
+				history.pushState({}, _title, "index2.html?"+_url.slice(0,_url.length-1));
+
+			});
+		}else{
+			_url='';
+			location.hash = '';
+			$('input:checked').each(function(i){
+				var _this = $(this);
+				_url += 'value'+i+'='+$(this).val()+'&'
+				// console.log(url+'?'+_url.slice(0,_url.length-1));
+				location.hash = _url.slice(0,_url.length-1);
+			});
+		}
+	});
+});
+</script>
+</body>
+</html>

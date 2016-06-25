@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	<script src="jquery.min.js"></script>
+	<script>
+		$.extend({
+			leftTrim: function (str){
+				return str.replace(/^\s+/g,'');
+			}
+		});
+
+		var str = '          啦啦啦啦        ';
+		console.log( '('+$.leftTrim(str)+')' );
+	</script>
+</body>
+</html>

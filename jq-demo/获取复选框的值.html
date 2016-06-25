@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+<input type="checkbox" value="1">1<br>
+<input type="checkbox" value="2">2<br>
+<input type="checkbox" value="3">3<br>
+<input type="checkbox" value="4">4<br>
+<input type="checkbox" value="5">5<br>
+<input type="checkbox" value="6">6<br>
+<input type="checkbox" value="7">7<br>
+<input type="checkbox" value="8">8<br>
+<input type="checkbox" value="9">9<br>
+<input type="checkbox" value="10">10<br>
+
+<script src="jquery.min.js"></script>
+<script>
+	
+	var url = location.href;
+	var val = '';
+	var url2= '';
+	console.log(url);
+
+	$('input[type=checkbox]').on('click',function (){
+		if( $(this).prop('checked') ){
+			$(this).each(function (i,elem){
+				val += $(this).val();
+				url2 += url+'?value'+i+'='+val;
+				console.log(val);
+				console.log(url2)
+			});
+			
+		}
+		
+	});
+</script>
+</body>
+</body>
+</html>
