@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width,user-scalable=no">
+    <title>撤回消息装逼</title>
+    <link id="shortcut" rel="shortcut icon" href="http://dengxiaozhen.github.io/favicon.ico">
+    <meta name="renderer" content="webkit">
+    <style>
+        body, div, p, input {
+            margin: 0;
+            padding: 0;
+        }
+
+        input,button {
+            border: none;
+            outline: none;
+            -webkit-appearance: none;
+            -webkit-tap-highlight-color: rgba(0,0,0,0);
+        }
+
+        .container {
+            margin-top: 40px;
+        }
+
+        .nick, .content {
+            height: 40px;
+            margin-bottom: 20px;
+        }
+
+        .nick input, .content input, .result {
+            width: 90%;
+            height: 20px;
+            line-height: 20px;
+            text-indent: 20px;
+            padding: 9px 0;
+            border: 1px solid #DCDCDC;
+            /*box-sizing: border-box;*/
+            -webkit-transition: all .4s;
+            transition: all .4s;
+            display: block;
+            margin: 0 auto;
+            color: #333;
+            font-size: 14px;
+        }
+
+        .nick input:focus, .content input:focus {
+            border: 1px solid #f60;
+        }
+
+        .generate {
+            width: 90%;
+            height: 40px;
+            background-color: #f60;
+            color: #fff;
+            font-size: 20px;
+            margin: 40px auto;
+            border-radius: 6px;
+            display: block;
+        }
+
+        .result {
+            text-align: center;
+            color: #333;
+            /*display: none;*/
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <p class="nick"><input type="text" placeholder="昵称" class="nick-input"></p>
+    <p class="content"><input type="text" placeholder="撤回后面显示的文字" class="text-input"></p>
+</div>
+<input type="button" value="生成" class="generate">
+<input type="text" class="result" placeholder="这里是生成的结果">
+<script src="visibilitychange.js"></script>
+<script>
+    var generate = document.getElementsByClassName('generate')[0];
+    var nick = document.getElementsByClassName('nick-input')[0];
+    var text = document.getElementsByClassName('text-input')[0];
+    var result = document.querySelector('.result');
+
+    generate.onclick = function () {
+        result.value = nick.value + String.fromCharCode(8238) + text.value.split('').reverse().join('') + String.fromCharCode(8237);
+    }
+</script>
+</body>
+</html>
